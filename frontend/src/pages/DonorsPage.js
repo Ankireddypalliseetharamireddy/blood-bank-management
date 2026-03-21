@@ -6,6 +6,7 @@ const DonorsPage = () => {
   const [loading, setLoading] = useState(true);
   const [bloodFilter, setBloodFilter] = useState('');
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => { fetchDonors(); }, [bloodFilter]);
 
   const fetchDonors = async () => {

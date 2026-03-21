@@ -15,6 +15,7 @@ const RequestsPage = () => {
     required_by: '',
   });
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => { fetchRequests(); }, [statusFilter]);
 
   const fetchRequests = async () => {
