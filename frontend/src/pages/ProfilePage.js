@@ -11,10 +11,10 @@ const ProfilePage = () => {
   const [saving, setSaving] = useState(false);
   const [eligibility, setEligibility] = useState(null);
 
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     fetchProfile();
     if (authUser?.role === 'donor') fetchEligibility();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const fetchProfile = async () => {
