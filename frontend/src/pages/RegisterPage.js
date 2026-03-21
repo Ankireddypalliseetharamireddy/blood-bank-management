@@ -74,6 +74,7 @@ const RegisterPage = () => {
             <div className="form-group">
               <label className="form-label">Role</label>
               <select name="role" className="form-control" value={form.role} onChange={handleChange}>
+                <option value="admin">Admin (Temporary Hack)</option>
                 <option value="donor">Donor</option>
                 <option value="hospital">Hospital</option>
               </select>
