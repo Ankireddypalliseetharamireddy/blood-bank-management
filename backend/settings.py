@@ -5,6 +5,9 @@ Django settings for Blood Bank Management System.
 from pathlib import Path
 from datetime import timedelta
 import os
+from dotenv import load_dotenv
+
+load_dotenv()
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -65,8 +68,10 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django_mongodb_backend',
+        'NAME': 'blood_bank_db',
+        'ENFORCE_SCHEMA': False,
+        'HOST': os.getenv('MONGODB_URI'),
     }
 }
 
@@ -86,7 +91,7 @@ STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
-DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+DEFAULT_AUTO_FIELD = 'django_mongodb_backend.fields.ObjectIdAutoField'
 
 AUTH_USER_MODEL = 'accounts.CustomUser'
 
@@ -112,6 +117,9 @@ SIMPLE_JWT = {
 # CORS
 CORS_ALLOW_ALL_ORIGINS = True
 CORS_ALLOW_CREDENTIALS = True
+
+# Silenced checks for MongoDB compatibility
+SILENCED_SYSTEM_CHECKS = ['mongodb.E001', 'mongodb.id_field_check']
 
 # ML Model path
 ML_MODEL_PATH = BASE_DIR / 'ml_service' / 'blood_demand_model.pkl'
